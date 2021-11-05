@@ -45,6 +45,8 @@ T = DNA.T
 C = DNA.C
 U = DNA.U
 del DNA
+# Path
+CWD = Path.cwd()
 
 
 # *Additional function
