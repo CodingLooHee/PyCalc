@@ -61,7 +61,11 @@ def sota(x): return arctan(rada(x))     # Cot of angle
 # Probability and etc.
 def c(n, k): return f(n) / (f(k), f(n - k))  # Choose
 # Chemistry
+# p = -log10
 def p(x): return -log10(x)
+# Chemical rate
+def c_rate(concentration_start, concentration_stop, duration):
+    return (concentration_start - concentration_stop) / duration
 
 
 # *Special function
