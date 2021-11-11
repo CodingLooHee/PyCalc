@@ -1,5 +1,6 @@
 import code
 import enum
+import os
 from pathlib import *
 
 
@@ -32,6 +33,8 @@ set_printoptions(precision=3, suppress=True)
 
 # *Rename function / Alternate name for function
 f = factorial
+หรม = gcd
+ครน = lcm
 
 
 # *Additional variables
@@ -62,8 +65,11 @@ def seca(x): return arccos(rada(x))     # Sec of angle
 def sota(x): return arctan(rada(x))     # Cot of angle
 # Probability and etc.
 def c(n, k): return f(n) / (f(k) * f(n - k))  # Choose
+# Quick map convertion
+def lm(*x): return list(map(*x))        # List of Map
+def sm(*x): return set(map(*x))         # Set of Map    #! Not tested yet
 # Quick sum
-def suml(*x): return sum(list(*x))        # Sum of List
+def suml(*x): return sum(list(*x))      # Sum of List
 def sumlm(*x): return suml(map(*x))     # Sum of List of Map
 # Chemistry
 # p = -log10
@@ -89,6 +95,31 @@ def vrec_pop():
 # Recorded variable list delete
 def vrec_de(v):
     var_rec_list.remove(v)
+# CMD
+def cmd(x): os.system(x)
+# Clear
+def cls(): cmd('cls')
+# Score calculator
+def scalc(countmode='wrong'):
+    print('Enter a max score for the test')
+    max_score = int(input('Max score: '))
+    match countmode:
+        case 'wrong' | 0:
+            print('Each character represent a zero mark.')
+            wrong_character = input('Enter character: ')
+            wrong_score = len(wrong_character)
+            score = max_score - wrong_score
+        case 'right'| 1:
+            print('Each character represent 1 mark.')
+            correct_character = input('Enter character: ')
+            score = len(correct_character)
+        case _:
+            raise TypeError('Not support')
+
+    score_percentage = score*100/max_score
+
+    print(f'Score: {score}/{max_score}')
+    print(f'Percent: {score_percentage:.2f}%')
 
 
 # *Save all locals and globals variable
