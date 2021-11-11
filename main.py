@@ -37,14 +37,16 @@ f = factorial
 # *Additional variables
 # Radian constant
 RAD = pi / 180
-# DNA
-DNA = enum.Enum('DNA RNA', 'A G T C U')
-A = DNA.A
-G = DNA.G
+# DNA and RNA
+DNARNA = enum.Enum('DNA RNA', 'A G C')
+A = DNARNA.A
+G = DNARNA.G
+C = DNARNA.C
+DNA = enum.Enum('DNA', 'T')
 T = DNA.T
-C = DNA.C
-U = DNA.U
-del DNA
+RNA = enum.Enum('RNA', 'U')
+U = RNA.U
+del DNA, RNA, DNARNA
 # Path
 CWD = Path.cwd()
 
