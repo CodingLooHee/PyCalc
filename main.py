@@ -77,6 +77,31 @@ def p(x): return -log10(x)
 # Chemical rate
 def c_rate(concentration_start, concentration_stop, duration):
     return (concentration_start - concentration_stop) / duration
+# Algebra
+def alg2(a, b, c):
+    under_root = b**2 - 4*a*c
+    down = 2*a
+    if under_root > 0:
+        up1 = -b + (under_root)**0.5
+        up2 = -b - (under_root)**0.5
+        return [up1/down, up2/down]
+    elif under_root < 0:
+        up1 = complex(-b + (under_root)**0.5)
+        up2 = complex(-b - (under_root)**0.5)
+        return [up1/down, up2/down]
+    elif under_root == 0:
+        return [-b/down]
+    else:
+        return None
+def alg3(a, b, c, d):       #! Not tested yet
+    q = (9*a*b*c - 27*(a**2)*d - 2*b**3)/(54*a**3)
+    r = ((((3*a*c - b**2)/(9*a**2))**3) + q**2)**(1/2)
+    s = (q+r)**(1/3)
+    t = (q-r)**(1/3)
+    x1 = s + t - (b/(3*a))
+    x2 = complex((-(1/2))*(s+t) - (b/(3*a)), ((3**(1/2))/2)*(s-t))
+    x3 = complex((-(1/2))*(s+t) - (b/(3*a)), (-(3**(1/2))/2)*(s-t))
+    return [x1, x2, x3]
 
 
 # *Special function
