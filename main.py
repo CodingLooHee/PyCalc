@@ -59,7 +59,7 @@ def csca(x): return arcsin(rada(x))     # Csc of angle
 def seca(x): return arccos(rada(x))     # Sec of angle
 def sota(x): return arctan(rada(x))     # Cot of angle
 # Probability and etc.
-def c(n, k): return f(n) / (f(k), f(n - k))  # Choose
+def c(n, k): return f(n) / (f(k) * f(n - k))  # Choose
 # Chemistry
 # p = -log10
 def p(x): return -log10(x)
