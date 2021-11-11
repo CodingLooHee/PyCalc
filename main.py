@@ -7,11 +7,11 @@ from pathlib import *
 '''
 There are some function that use the same name.
 The problem is that it overwrite the previous function.
-What I had seen is numpy and math module.
-But I want it to use function without writing module name
-because it reduce my speed when I use this calculator.
-So the solution is to make the most important function
-overwrite the less important one.
+What I have seen is numpy and math module.
+But I want it to use function without writing a module name
+because it reduce my typing speed when I use this calculator.
+So the solution is to make more important function
+overwrite the less one.
 '''
 # Quite insignificant
 from matplotlib.pyplot import *
@@ -60,6 +60,9 @@ def seca(x): return arccos(rada(x))     # Sec of angle
 def sota(x): return arctan(rada(x))     # Cot of angle
 # Probability and etc.
 def c(n, k): return f(n) / (f(k) * f(n - k))  # Choose
+# Quick sum
+def suml(*x): return sum(list(*x))        # Sum of List
+def sumlm(*x): return suml(map(*x))     # Sum of List of Map
 # Chemistry
 # p = -log10
 def p(x): return -log10(x)
