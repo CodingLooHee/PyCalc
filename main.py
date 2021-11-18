@@ -52,6 +52,10 @@ U = RNA.U
 del DNA, RNA, DNARNA
 # Path
 CWD = Path.cwd()
+# Unit
+deci = 1e-1
+centi = 1e-2
+milli = 1e-3
 
 
 # *Additional function
@@ -102,6 +106,8 @@ def alg3(a, b, c, d):       #! Not tested yet
     x2 = complex((-(1/2))*(s+t) - (b/(3*a)), ((3**(1/2))/2)*(s-t))
     x3 = complex((-(1/2))*(s+t) - (b/(3*a)), (-(3**(1/2))/2)*(s-t))
     return [x1, x2, x3]
+def root(x):
+    return x**(1/2)
 
 
 # *Special function
