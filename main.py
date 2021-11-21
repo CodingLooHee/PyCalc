@@ -86,21 +86,6 @@ def root(x):
 
 
 # *Special function
-# Variable recorder
-var_rec_list = []
-# Record variable
-def vrec(*v):
-    global var_rec_list
-    var_rec_list += v
-# Recorded variable list print
-def vrec_p():
-    print(var_rec_list)
-# Recorded variable list pop
-def vrec_pop():
-    var_rec_list.pop()
-# Recorded variable list delete
-def vrec_de(v):
-    var_rec_list.remove(v)
 # CMD
 def cmd(x): os.system(x)
 # Clear
