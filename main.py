@@ -2,13 +2,13 @@ import code
 import enum
 import os
 from pathlib import *
+import numpy as np
 
 
 # *Additional import
 '''
 There are some function that use the same name.
 The problem is that it overwrite the previous function.
-What I have seen is numpy and math module.
 But I want it to use function without writing a module name
 because it reduce my typing speed when I use this calculator.
 So the solution is to make more important function
@@ -18,8 +18,6 @@ overwrite the less one.
 from matplotlib.pyplot import *
 from pandas import *
 # Mild important
-from numpy import *
-from numpy.linalg import *
 from pandas import *
 arr_isclose = isclose       # Rename
 # Very important
