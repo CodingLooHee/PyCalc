@@ -26,7 +26,7 @@ from math import *
 
 
 # *Setting
-set_printoptions(precision=3, suppress=True)
+np.set_printoptions(precision=3, suppress=True)
 
 
 # *Rename function / Alternate name for function
@@ -83,9 +83,9 @@ def rada(x): return x * pi / 180        # Radian to Angle
 def sina(x): return sin(rada(x))        # Sin of angle
 def cosa(x): return cos(rada(x))        # Cos of angle
 def tana(x): return tan(rada(x))        # Tan of angle
-def csca(x): return arcsin(rada(x))     # Csc of angle
-def seca(x): return arccos(rada(x))     # Sec of angle
-def sota(x): return arctan(rada(x))     # Cot of angle
+def csca(x): return 1/sina(x)           # Csc of angle
+def seca(x): return 1/cosa(x)           # Sec of angle
+def sota(x): return 1/tana(x)           # Cot of angle
 # Probability and etc.
 def c(n, k): return f(n) / (f(k) * f(n - k))  # Choose
 # Quick map convertion
