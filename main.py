@@ -19,7 +19,6 @@ from matplotlib.pyplot import *
 from pandas import *
 # Mild important
 from pandas import *
-arr_isclose = isclose       # Rename
 # Very important
 from random import *
 from math import *
@@ -39,15 +38,12 @@ f = factorial
 # Radian constant
 RAD = pi / 180
 # DNA and RNA
-DNARNA = enum.Enum('DNA RNA', 'A G C')
-A = DNARNA.A
-G = DNARNA.G
-C = DNARNA.C
-DNA = enum.Enum('DNA', 'T')
-T = DNA.T
-RNA = enum.Enum('RNA', 'U')
-U = RNA.U
-del DNA, RNA, DNARNA
+class N_BASE(enum.Enum):
+    A = enum.auto()
+    G = enum.auto()
+    T = enum.auto()
+    C = enum.auto()
+    U = enum.auto()
 # Path
 CWD = Path.cwd()
 # Unit
@@ -102,6 +98,116 @@ def c_rate(concentration_start, concentration_stop, duration):
     return (concentration_start - concentration_stop) / duration
 def root(x):
     return x**(1/2)
+# Distance
+def dis2(x1, y1, x2, y2):
+    dx = x1 - x2
+    dy = y1 - y2
+    return (dx**2 + dy**2)**(1/2)
+def dis3(x1, y1, z1, x2, y2, z2):
+    dx = x1 - x2
+    dy = y1 - y2
+    dz = z1 - z2
+    return (dx**2 + dy**2 + dz**2)**(1/2)
+
+
+# *Additional class
+# DNA #TODO: continue this feature
+class DNA:
+    def __init__(self, init_dna: str='') -> None:
+        # Turn list into dna
+        self.dna_template = self._dna2str(init_dna)
+        
+        # Getting non template dna
+        self.dna_non_template = self._get_dna_oppose(self.dna_template)
+    
+    def __str__(self) -> str:
+        return f'{self.template}'
+        
+    '''
+    Please note that everytime something make change to the DNA sequence
+    Non-template DNA must be changed oppose to template DNA and vice versa
+    '''
+
+    @property
+    def template(self):                     # Get DNA in string format
+        str_dna = ''
+        for each_base in self.dna_template:
+            str_dna += self._base2char(each_base)
+        return str_dna
+    
+    @property
+    def non_template(self):                 # Get non template DNA with string format
+        str_dna = ''
+        for each_base in self.dna_non_template:
+            str_dna += self._base2char(each_base)
+        return str_dna
+    
+
+    @template.setter
+    def template(self, new_dna: str):       # Set DNA with string format
+        self.dna_template = self._dna2str(new_dna)
+        self.dna_non_template = self._get_dna_oppose(self.dna_template)
+    
+    @non_template.setter
+    def non_template(self, new_dna:str):    # Set not template DNA with string format
+        self.dna_non_template = self._dna2str(new_dna)
+        self.dna_template = self._get_dna_oppose(self.dna_non_template)
+
+
+    # Utility zone
+
+    @staticmethod
+    def _dna2str(str_dna: str):
+        # Check if init_dna is string
+        if type(str_dna) is not str:
+            raise TypeError('This is not string')
+        
+        dna_template: list[N_BASE] = []
+        # Turn list into dna
+        for each_base in str_dna:
+            match each_base:
+                case 'A' | 'a':
+                    dna_template.append(N_BASE.A)
+                case 'G' | 'g':
+                    dna_template.append(N_BASE.G)
+                case 'T' | 't':
+                    dna_template.append(N_BASE.T)
+                case 'C' | 'c':
+                    dna_template.append(N_BASE.C)
+                case _:
+                    raise ValueError('Only A G T C can be put')
+        return dna_template
+    
+    @staticmethod
+    def _get_dna_oppose(str_dna: list[N_BASE]):
+        # Getting non template dna
+        dna_non_template: list[N_BASE] = []
+        for each_base in str_dna:
+            match each_base:
+                case N_BASE.A:
+                    dna_non_template.append(N_BASE.T)
+                case N_BASE.T:
+                    dna_non_template.append(N_BASE.A)
+                case N_BASE.G:
+                    dna_non_template.append(N_BASE.C)
+                case N_BASE.C:
+                    dna_non_template.append(N_BASE.G)
+        return dna_non_template
+    
+    @staticmethod
+    def _base2char(base_single):
+        match base_single:
+            case N_BASE.A:
+                return 'A'
+            case N_BASE.G:
+                return 'G'
+            case N_BASE.T:
+                return 'T'
+            case N_BASE.C:
+                return 'C'
+            case _:
+                raise ValueError('Not a N_BASE')
+
 
 
 # *Special function
