@@ -195,7 +195,7 @@ class DNA:
         return dna_non_template
     
     @staticmethod
-    def _base2char(base_single):
+    def _base2char(base_single: N_BASE):
         match base_single:
             case N_BASE.A:
                 return 'A'
@@ -206,7 +206,7 @@ class DNA:
             case N_BASE.C:
                 return 'C'
             case _:
-                raise ValueError('Not a N_BASE')
+                raise ValueError('Not an N_BASE')
 
 
 
@@ -216,7 +216,7 @@ def cmd(x): os.system(x)
 # Clear
 def cls(): cmd('cls')
 # Score calculator
-def scalc(countmode='wrong'):
+def scalc(countmode: str='wrong'):
     print('Enter a max score for the test')
     max_score = int(input('Max score: '))
     match countmode:
