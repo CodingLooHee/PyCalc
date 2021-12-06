@@ -3,7 +3,8 @@ import enum
 import os
 from pathlib import *
 import numpy as np
-from pycalc import dna
+from pycalc.dna import *
+from pycalc.n_base import *
 
 
 # *Additional import
