@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "A personal calculator"
 authors = ["CodingLooHee <pitchanun2003@gmail.com>"]
 license = "MIT"
+packages = [
+    { include = "pycalc"},
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
