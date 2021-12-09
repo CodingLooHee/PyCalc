@@ -27,6 +27,7 @@ from pandas import *
 # Very important
 from random import *
 from math import *
+from statistics import *
 
 
 # *Setting
