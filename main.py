@@ -3,6 +3,8 @@ import enum
 import os
 from pathlib import *
 import numpy as np
+import sys
+import pycalc
 
 # pycalc package
 from pycalc.dna import *
@@ -129,5 +131,10 @@ variables.update(locals())
 
 # *Start interactive console
 if __name__ == '__main__':
+    # Quick function access by argument
+    match sys.argv[1]:
+        case 'scalc':
+            scalc()
+    
     shell = code.InteractiveConsole(variables)
     shell.interact()
