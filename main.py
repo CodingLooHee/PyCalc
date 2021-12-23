@@ -67,6 +67,14 @@ def seca(x): return 1/cosa(x)           # Sec of angle
 def sota(x): return 1/tana(x)           # Cot of angle
 # Probability and etc.
 def c(n, k): return f(n) / (f(k) * f(n - k))  # Choose
+# List accumulator
+def acc(x):
+    sum_value_accumulate = []
+    sum_value = 0
+    for value in x:
+        sum_value += value
+        sum_value_accumulate.append(sum_value)
+    return sum_value_accumulate
 # Quick map convertion
 def lm(*x): return list(map(*x))        # List of Map
 def sm(*x): return set(map(*x))         # Set of Map
