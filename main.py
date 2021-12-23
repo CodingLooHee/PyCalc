@@ -132,9 +132,10 @@ variables.update(locals())
 # *Start interactive console
 if __name__ == '__main__':
     # Quick function access by argument
-    match sys.argv[1]:
-        case 'scalc':
-            scalc()
+    if (len_argv := len(sys.argv)) > 1:
+        match sys.argv[1]:
+            case 'scalc':
+                scalc()
     
     shell = code.InteractiveConsole(variables)
     shell.interact()
