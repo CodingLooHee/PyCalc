@@ -53,7 +53,7 @@ CWD = Path.cwd()
 ke = 9e9        # K constant (electric)
 qe = -1.6e-19   # Electron charge (coulomb)
 qp = 1.6e-19    # Proton charge (coulomb)
-G = 6.67        # Gravity constant (m^3/(kg.s^2))
+G = 6.67e-11    # Gravity constant (m^3/(kg.s^2))
 
 
 # *Additional function
