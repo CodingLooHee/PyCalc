@@ -47,6 +47,7 @@ f = factorial
 RAD = pi / 180
 # DNA and RNA
 
+
 # Path
 CWD = Path.cwd()
 # Physic
@@ -99,6 +100,9 @@ def dis3(x1, y1, z1, x2, y2, z2):
     dy = y1 - y2
     dz = z1 - z2
     return (dx**2 + dy**2 + dz**2)**(1/2)
+# Natural log
+def ln(x):
+    return log(x, e)
 
 
 # *Additional class
