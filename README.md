@@ -1,3 +1,5 @@
 # PyCalc
 This program is my personal calculator.
-I am a noob at coding so it isn't that good.
+It is use to quickly calculate and test something.
+
+I am a newbie btw.
