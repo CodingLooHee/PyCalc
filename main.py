@@ -5,6 +5,8 @@ from pathlib import *
 import numpy as np
 import sys
 import pycalc
+import colorama
+colorama.init(autoreset=True)
 
 # pycalc package
 from pycalc.dna import *
@@ -133,8 +135,8 @@ def scalc(countmode: str='wrong'):
 
     score_percentage = score*100/max_score
 
-    print(f'Score: {score}/{max_score}')
-    print(f'Percent: {score_percentage:.2f}%')
+    print(f'{colorama.Fore.RED}Score: {score}/{max_score}')
+    print(f'{colorama.Fore.BLUE}Percent: {score_percentage:.2f}%')
 
 
 # *Save all locals and globals variable
