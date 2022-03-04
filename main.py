@@ -136,7 +136,7 @@ def scalc(countmode: str='wrong'):
     score_percentage = score*100/max_score
 
     print(f'{colorama.Fore.RED}Score: {score}/{max_score}')
-    print(f'{colorama.Fore.BLUE}Percent: {score_percentage:.2f}%')
+    print(f'{colorama.Fore.GREEN}Percent: {score_percentage:.2f}%')
 
 
 # *Save all locals and globals variable
