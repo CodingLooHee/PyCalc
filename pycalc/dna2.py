@@ -1,9 +1,12 @@
+# DNA and RNA version 2
 
-# *Utility
+# *Custom error
+class UnknownBase(Exception):
+    pass
+
+
+# *Low level utility
 # Check if sequence is valid
-import re
-
-
 def _is_sequence_valid(sequence: str, allowedBase: list[str]):
         for base in sequence:
             if not base in allowedBase:
@@ -11,31 +14,28 @@ def _is_sequence_valid(sequence: str, allowedBase: list[str]):
         return True
 
 
-# Custom error
-class UnknownBase(Exception):
-    pass
+def _sequence_check_with_raise(sequence: str, allowedBase: list[str]):
+    ''' Check if sequence is valid
+    Valid?    -> Return sequence
+    Invalid?  -> Throw error
+    '''
+    sequence_upper_case = sequence.upper()
+    if _is_sequence_valid(sequence_upper_case, allowedBase):
+        return sequence_upper_case
+    else:
+        raise UnknownBase('Unknown base detected')
 
 
 # *DNA and RNA
 class _NA_Type:
-    @staticmethod
-    def _sequence_check_with_raise(sequence: str, allowedBase: list[str]):
-        ''' Check if sequence is valid
-        Valid?    -> Return sequence
-        Invalid?  -> Throw error
-        '''
-        sequence_upper_case = sequence.upper()
-        if _is_sequence_valid(sequence_upper_case, allowedBase):
-            return sequence_upper_case
-        else:
-            raise UnknownBase('Unknown base detected')
+    pass
 
 
 class DNA(_NA_Type):
     ALLOWED_BASE = ['A','G','T','C']
 
     def __init__(self, sequence: str='') -> None:
-        self._sequence = self._sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
 
     @property
     def value(self):
@@ -43,14 +43,14 @@ class DNA(_NA_Type):
     
     @value.setter
     def value(self, sequence: str=''):
-        self._sequence = self._sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
 
 
 class RNA(_NA_Type):
     ALLOWED_BASE = ['A','G','U','C']
 
     def __init__(self, sequence: str='') -> None:
-        self._sequence = self._sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
 
     @property
     def value(self):
@@ -58,10 +58,10 @@ class RNA(_NA_Type):
     
     @value.setter
     def value(self, sequence: str=''):
-        self._sequence = self._sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
 
 
-
+# *High level utility
 def dna2rna(dna: DNA):
     if type(dna) != DNA:
         raise TypeError('Must be DNA')
