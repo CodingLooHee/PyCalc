@@ -1,5 +1,8 @@
 # DNA and RNA version 2
 
+import colorama as _colorama
+
+
 # *Custom error
 class UnknownBase(Exception):
     pass
@@ -20,72 +23,72 @@ def _sequence_check_with_raise(sequence: str, allowedBase: list[str]):
     Invalid?  -> Throw error
     '''
     sequence_upper_case = sequence.upper()
+
     if _is_sequence_valid(sequence_upper_case, allowedBase):
         return sequence_upper_case
     else:
-        raise UnknownBase('Unknown base detected')
+        # Color unknown base in RED
+        error_base = ''
+        for base in sequence_upper_case:
+            if base not in allowedBase:
+                error_base += f'{_colorama.Fore.RED}{base}{_colorama.Fore.RESET}'
+            else:
+                error_base += base
+        
+        raise UnknownBase(f'Unknown base in sequence: {error_base}')
 
 
 # *DNA and RNA
 class _NA_Type:
-    pass
+    ALLOWED_BASE: list[str] = []
+
+    def __init__(self, sequence: str='') -> None:
+        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+    
+    @property
+    def value(self):
+        return self._sequence
+    
+    @value.setter
+    def value(self, sequence: str=''):
+        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
 
 
 class DNA(_NA_Type):
     ALLOWED_BASE = ['A','G','T','C']
 
-    def __init__(self, sequence: str='') -> None:
-        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
-
-    @property
-    def value(self):
-        return self._sequence
-    
-    @value.setter
-    def value(self, sequence: str=''):
-        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
-
 
 class RNA(_NA_Type):
     ALLOWED_BASE = ['A','G','U','C']
 
-    def __init__(self, sequence: str='') -> None:
-        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
-
-    @property
-    def value(self):
-        return self._sequence
-    
-    @value.setter
-    def value(self, sequence: str=''):
-        self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
-
 
 # *High level utility
-def dna2rna(dna: DNA):
+def dna2rna(dna: DNA) -> RNA:
     if type(dna) != DNA:
         raise TypeError('Must be DNA')
     new_rna = RNA()
     new_rna.value = dna.value.replace('T', 'U')
     return new_rna
 
-def rna2dna(rna: RNA):
+def rna2dna(rna: RNA) -> DNA:
     if type(rna) != RNA:
         raise TypeError('Must be RNA')
     new_dna = DNA()
     new_dna.value = rna.value.replace('U', 'T')
     return new_dna
 
-def na_swap(na: DNA | RNA):
+def na_swap(na: DNA | RNA) -> DNA | RNA:
     if type(na) not in [DNA, RNA]:
         raise TypeError('Must be DNA or RNA')
-    na.value = na.value[::-1]
+    na.value = na.value[::-1]       # This modify the original value!
+    return na.value
 
 
 
 # Test zone
 if __name__ == '__main__':
-    r = RNA('AGUCCUGA')
-    print(r.value)
+    r = RNA()
+    r.value = 'agggauc'
     d = rna2dna(r)
+    na_swap(d)
     print(d.value)
