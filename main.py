@@ -4,7 +4,6 @@ import os
 from pathlib import *
 import numpy as np
 import sys
-import pycalc
 import colorama
 colorama.init(autoreset=True)
 
