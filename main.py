@@ -8,7 +8,7 @@ import colorama
 colorama.init(autoreset=True)
 
 # pycalc package
-from pycalc.dna import *
+from pycalc.dna2 import *
 from pycalc.n_base import *
 from pycalc.units import *
 
