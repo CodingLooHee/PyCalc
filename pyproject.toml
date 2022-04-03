@@ -1,3 +1,20 @@
+[tool.poetry]
+name = "Pycalc"
+version = "0.2.0"
+description = ""
+authors = ["CodingLooHee <63284510+CodingLooHee@users.noreply.github.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.22.3"
+pandas = "^1.4.2"
+matplotlib = "^3.5.1"
+colorama = "^0.4.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.1"
+
 [build-system]
-requires = ["setuptools>=43.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
