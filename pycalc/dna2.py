@@ -1,7 +1,7 @@
 # DNA and RNA version 2
 
 import colorama as _colorama
-from abc import abstractmethod
+from abc import ABCMeta, abstractmethod
 
 
 # *Custom error
@@ -40,7 +40,7 @@ def _sequence_check_with_raise(sequence: str, allowedBase: list[str]):
 
 
 # *DNA and RNA
-class _NA_Type:
+class _NA_Type(metaclass=ABCMeta):
     ALLOWED_BASE: list[str] = []
 
     def __init__(self, sequence: str='') -> None:
