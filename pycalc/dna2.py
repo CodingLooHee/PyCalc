@@ -56,10 +56,16 @@ class _NA_Type:
 
 class DNA(_NA_Type):
     ALLOWED_BASE = ['A','G','T','C']
+    
+    def copy(self):
+        return DNA(self.value)
 
 
 class RNA(_NA_Type):
     ALLOWED_BASE = ['A','G','U','C']
+
+    def copy(self):
+        return RNA(self.value)
 
 
 # *High level utility
@@ -83,12 +89,47 @@ def na_swap(na: DNA | RNA) -> DNA | RNA:
     na.value = na.value[::-1]       # This modify the original value!
     return na.value
 
+def oppose_dna(dna: DNA) -> DNA:
+    new_dna = DNA()
+    for base in dna.value:
+        match base:
+            case 'A':
+                new_dna.value += 'T'
+            case 'G':
+                new_dna.value += 'C'
+            case 'T':
+                new_dna.value += 'A'
+            case 'C':
+                new_dna.value += 'G'
+    return new_dna
+
+def oppose_rna(rna: RNA) -> RNA:
+    new_rna = RNA()
+    for base in rna.value:
+        match base:
+            case 'A':
+                new_rna.value += 'U'
+            case 'G':
+                new_rna.value += 'C'
+            case 'U':
+                new_rna.value += 'A'
+            case 'C':
+                new_rna.value += 'G'
+    return new_rna
+
+def transcript(dna: DNA) -> RNA:
+    # Swap 5' and 3'
+    # Oppose base
+    # DNA -> RNA
+    temp_dna = dna.copy()
+    na_swap(temp_dna)
+    temp_dna = oppose_dna(temp_dna)
+    new_rna = dna2rna(temp_dna)
+    return new_rna
 
 
 # Test zone
 if __name__ == '__main__':
-    r = RNA()
-    r.value = 'agggauc'
-    d = rna2dna(r)
-    na_swap(d)
-    print(d.value)
+    d = DNA('agtc')
+    mr = transcript(d)
+    print(mr.value)
