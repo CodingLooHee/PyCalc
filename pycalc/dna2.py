@@ -101,7 +101,7 @@ def na_swap(na: DNA | RNA) -> DNA | RNA:
     if type(na) not in [DNA, RNA]:
         raise TypeError('Must be DNA or RNA')
     na.value = na.value[::-1]       # This modify the original value!
-    return na.value
+    return na
 
 def oppose_dna(dna: DNA) -> DNA:
     new_dna = DNA()
