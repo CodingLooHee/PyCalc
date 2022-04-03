@@ -1,6 +1,7 @@
 # DNA and RNA version 2
 
 import colorama as _colorama
+from abc import abstractmethod
 
 
 # *Custom error
@@ -44,6 +45,13 @@ class _NA_Type:
 
     def __init__(self, sequence: str='') -> None:
         self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+
+    @abstractmethod
+    def __repr__(self) -> str:
+        return f'<NA {self.value}>'
+
+    def __str__(self) -> str:
+        return self.__repr__()
     
     @property
     def value(self):
@@ -56,6 +64,9 @@ class _NA_Type:
 
 class DNA(_NA_Type):
     ALLOWED_BASE = ['A','G','T','C']
+
+    def __repr__(self) -> str:
+        return f'<DNA "{self.value}">'
     
     def copy(self):
         return DNA(self.value)
@@ -63,6 +74,9 @@ class DNA(_NA_Type):
 
 class RNA(_NA_Type):
     ALLOWED_BASE = ['A','G','U','C']
+
+    def __repr__(self) -> str:
+        return f'<RNA "{self.value}">'
 
     def copy(self):
         return RNA(self.value)
