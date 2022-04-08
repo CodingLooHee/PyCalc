@@ -96,7 +96,7 @@ setuptools_scm = ">=4"
 name = "mypy"
 version = "0.942"
 description = "Optional static typing for Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -114,7 +114,7 @@ reports = ["lxml"]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -272,14 +272,14 @@ python-versions = ">=3.7"
 name = "typing-extensions"
 version = "4.1.1"
 description = "Backported and Experimental Type Hints for Python 3.6+"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6a3ccae064b6f3618612ae09393b7912c4337cdf6f5bdf92d1c54b8811260bf7"
+content-hash = "b2a508487ce92459ae322111c8a31ac001fab3f59e86a503f04d6ca26c7894dc"
 
 [metadata.files]
 atomicwrites = [
