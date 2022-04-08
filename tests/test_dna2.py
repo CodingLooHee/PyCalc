@@ -82,3 +82,27 @@ def test_transcript():
     template_dna = DNA('agtcagtcagcatcacgact')
     mrna = transcript(template_dna)
     assert mrna.value == 'agucgugaugcugacugacu'.upper()
+
+def test_dna_copy():
+    dna_original = DNA('agtc')
+    dna_copied = dna_original.copy()
+    assert dna_original.value == dna_copied.value
+
+def test_rna_copy():
+    rna_original = RNA('aguc')
+    rna_copied = rna_original.copy()
+    assert rna_original.value == rna_copied.value
+
+# Copied dna must be deepcopy
+# Changing the copied value must not change the original value 
+def test_dna_copy_no_link():
+    dna_original = DNA('agtc')
+    dna_copied = dna_original.copy()
+    dna_original.value = 'aaggttcc'
+    assert dna_original.value != dna_copied.value
+
+def test_rna_copy_no_link():
+    rna_original = DNA('agtc')
+    rna_copied = rna_original.copy()
+    rna_original.value = 'aaggttcc'
+    assert rna_original.value != rna_copied.value
