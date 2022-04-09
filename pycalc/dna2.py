@@ -1,5 +1,6 @@
 # DNA and RNA version 2
 
+from typing import NoReturn, overload
 import colorama as _colorama
 from abc import ABCMeta, abstractmethod
 
@@ -97,7 +98,12 @@ def rna2dna(rna: RNA) -> DNA:
     new_dna.value = rna.value.replace('U', 'T')
     return new_dna
 
-def na_swap(na: DNA | RNA) -> DNA | RNA:
+@overload
+def na_swap(na: DNA) -> DNA | NoReturn:...
+@overload
+def na_swap(na: RNA) -> RNA | NoReturn:...
+
+def na_swap(na):
     if type(na) not in [DNA, RNA]:
         raise TypeError('Must be DNA or RNA')
     na.value = na.value[::-1]       # This modify the original value!
