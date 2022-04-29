@@ -11,6 +11,7 @@ numpy = "^1.22.3"
 pandas = "^1.4.2"
 matplotlib = "^3.5.1"
 colorama = "^0.4.4"
+art = "^5.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"

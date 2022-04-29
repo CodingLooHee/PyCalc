@@ -4,6 +4,7 @@ import os
 from pathlib import *
 import numpy as np
 import sys
+from art import tprint
 import colorama
 colorama.init(autoreset=True)
 
@@ -54,6 +55,11 @@ variables.update(locals())
 
 # *Start interactive console
 if __name__ == '__main__':
+    # Welcome
+    print("--------------------------------------------\n")
+    tprint("PYCALC")
+    print("--------------------------------------------")
+
     # Quick function access by argument
     if (len_argv := len(sys.argv)) > 1:
         match sys.argv[1]:
@@ -61,4 +67,4 @@ if __name__ == '__main__':
                 scalc()
     
     shell = code.InteractiveConsole(variables)
-    shell.interact()
+    shell.interact(banner='')
