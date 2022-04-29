@@ -46,9 +46,6 @@ f = factorial
 # *Additional variables
 # Radian constant
 RAD = pi / 180
-# DNA and RNA
-
-
 # Path
 CWD = Path.cwd()
 # Physic
@@ -104,10 +101,6 @@ def dis3(x1, y1, z1, x2, y2, z2):
 # Natural log
 def ln(x):
     return log(x, e)
-
-
-# *Additional class
-# DNA and RNA           #? May need more test
 
 
 # *Special function
