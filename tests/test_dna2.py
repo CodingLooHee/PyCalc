@@ -1,6 +1,6 @@
 import pytest
 from pycalc.dna2 import *
-from pycalc.dna2 import _NA_Type
+from pycalc.dna2 import _NA_Type, _is_prime_valid, _prime_check_with_raise
 
 # Test for DNA/RNA Init
 def test_dna_init_1():
@@ -106,3 +106,28 @@ def test_rna_copy_no_link():
     rna_copied = rna_original.copy()
     rna_original.value = 'aaggttcc'
     assert rna_original.value != rna_copied.value
+
+
+# Test for low-level prime checker
+def test_is_prime_valid_5():
+    assert _is_prime_valid(5)
+
+
+def test_is_prime_valid_3():
+    assert _is_prime_valid(3)
+
+@pytest.mark.xfail(raises=AssertionError)
+def test_is_prime_valid_invalid():
+    assert _is_prime_valid(4)
+
+
+def test_prime_checker_5():
+    assert _prime_check_with_raise(5) == 5
+
+
+def test_prime_checker_3():
+    assert _prime_check_with_raise(3) == 3
+
+@pytest.mark.xfail(raises=UnknownPrime)
+def test_prime_checker_invalid():
+    _prime_check_with_raise(4)

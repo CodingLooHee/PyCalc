@@ -9,17 +9,20 @@ from abc import ABCMeta, abstractmethod
 class UnknownBase(Exception):
     pass
 
+class UnknownPrime(Exception):
+    pass
+
 
 # *Low level utility
 # Check if sequence is valid
-def _is_sequence_valid(sequence: str, allowedBase: list[str]):
+def _is_sequence_valid(sequence: str, allowedBase: list[str]) -> bool:
         for base in sequence:
             if not base in allowedBase:
                 return False
         return True
 
 
-def _sequence_check_with_raise(sequence: str, allowedBase: list[str]):
+def _sequence_check_with_raise(sequence: str, allowedBase: list[str]) -> str | NoReturn:
     ''' Check if sequence is valid
     Valid?    -> Return sequence
     Invalid?  -> Throw error
@@ -40,12 +43,28 @@ def _sequence_check_with_raise(sequence: str, allowedBase: list[str]):
         raise UnknownBase(f'Unknown base in sequence: {error_base}')
 
 
+def _is_prime_valid(prime: int) -> bool:
+    match prime:
+        case 3 | 5:
+            return True
+        case _:
+            return False
+
+
+def _prime_check_with_raise(prime: int) -> int | NoReturn:
+    if _is_prime_valid(prime):
+        return prime
+    else:
+        raise UnknownPrime(f'Unknown prime: {prime}\'')
+
+
 # *DNA and RNA
 class _NA_Type(metaclass=ABCMeta):
     ALLOWED_BASE: list[str] = []
 
-    def __init__(self, sequence: str='') -> None:
+    def __init__(self, sequence: str='', start_prime: int=5) -> None:
         self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+        self._start_prime = _prime_check_with_raise(start_prime)
 
     @abstractmethod
     def __repr__(self) -> str:
