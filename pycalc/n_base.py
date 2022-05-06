@@ -1,3 +1,6 @@
+
+#! Deprecated
+
 from enum import Enum as _Enum
 from enum import auto as _auto
 

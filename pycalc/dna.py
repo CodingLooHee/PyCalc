@@ -1,3 +1,6 @@
+
+#! Deprecated
+
 from pycalc import n_base
 
 
@@ -32,12 +35,12 @@ class RNA:
         return str_rna
     
 
-    @template.setter
+    @template.setter    # type: ignore
     def template(self, new_rna: str):       # Set DNA with string format
         self.rna_template = self._str2rna(new_rna)
         self.rna_non_template = self._get_rna_oppose(self.rna_template)
     
-    @non_template.setter
+    @non_template.setter    # type: ignore
     def non_template(self, new_rna:str):    # Set not template DNA with string format
         self.rna_non_template = self._str2rna(new_rna)
         self.rna_template = self._get_rna_oppose(self.rna_non_template)
@@ -133,19 +136,19 @@ class DNA:
         return str_dna
     
 
-    @template.setter
+    @template.setter    # type: ignore
     def template(self, new_dna: str):       # Set DNA with string format
         self.dna_template = self._str2dna(new_dna)
         self.dna_non_template = self._get_dna_oppose(self.dna_template)
     
-    @non_template.setter
+    @non_template.setter    # type: ignore
     def non_template(self, new_dna:str):    # Set not template DNA with string format
         self.dna_non_template = self._str2dna(new_dna)
         self.dna_template = self._get_dna_oppose(self.dna_non_template)
     
     #? Check if it's work
     def reverse_from(self, mrna:RNA):
-        self.template = mrna.non_template.replace('U', 'T')
+        self.template = mrna.non_template.replace('U', 'T') # type: ignore
 
 
     # Utility zone
