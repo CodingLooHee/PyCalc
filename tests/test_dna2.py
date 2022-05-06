@@ -1,6 +1,8 @@
 import pytest
 from pycalc.dna2 import *
-from pycalc.dna2 import _NA_Type, _is_prime_valid, _prime_check_with_raise
+from pycalc.dna2 import _NA_Type
+from pycalc.dna2 import _is_sequence_valid, _sequence_check_with_raise
+from pycalc.dna2 import _is_prime_valid, _prime_check_with_raise
 
 # Test for DNA/RNA Init
 def test_dna_init_1():
