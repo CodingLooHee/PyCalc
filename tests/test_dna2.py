@@ -133,3 +133,61 @@ def test_prime_checker_3():
 @pytest.mark.xfail(raises=UnknownPrime)
 def test_prime_checker_invalid():
     _prime_check_with_raise(4)
+
+def test_dna_prime_init_3():
+    d = DNA(start_prime=3)
+
+def test_dna_prime_init_5():
+    d = DNA(start_prime=5)
+
+def test_rna_prime_init_3():
+    r = RNA(start_prime=3)
+
+def test_rna_prime_init_5():
+    r = RNA(start_prime=5)
+
+@pytest.mark.xfail(raises=UnknownPrime)
+def test_dna_prime_init_fail():
+    d = DNA(start_prime=4)
+
+@pytest.mark.xfail(raises=UnknownPrime)
+def test_rna_prime_init_fail():
+    r = RNA(start_prime=4)
+
+@pytest.mark.xfail(raises=TypeError)
+def test_dna_prime_init_type_fail():
+    d = DNA(start_prime='x')
+
+@pytest.mark.xfail(raises=TypeError)
+def test_rna_prime_init_type_fail():
+    r = RNA(start_prime='x')
+
+def test_dna_prime_getter():
+    d = DNA(start_prime=3)
+    assert d.prime == 3
+
+def test_rna_prime_getter():
+    r = RNA(start_prime=3)
+    assert r.prime == 3
+
+def test_dna_prime_setter():
+    d = DNA(start_prime=5)
+    d.prime = 3
+    assert d.prime == 3
+
+def test_rna_prime_setter():
+    r = RNA(start_prime=5)
+    r.prime = 3
+    assert r.prime == 3
+
+@pytest.mark.xfail(raises=UnknownPrime)
+def test_dna_prime_setter_invalid():
+    d = DNA(start_prime=5)
+    d.prime = 4
+
+@pytest.mark.xfail(raises=UnknownPrime)
+def test_rna_prime_setter_invalid():
+    r = RNA(start_prime=5)
+    r.prime = 4
+
+

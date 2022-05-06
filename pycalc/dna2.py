@@ -57,6 +57,11 @@ def _is_prime_valid(prime: int) -> bool:
 
 
 def _prime_check_with_raise(prime: int) -> int | NoReturn:
+
+    # Ensure the prime is int
+    if type(prime) != int:
+        raise TypeError('The prime must be int')
+
     if _is_prime_valid(prime):
         return prime
     else:
@@ -85,6 +90,14 @@ class _NA_Type(metaclass=ABCMeta):
     @value.setter
     def value(self, sequence: str=''):
         self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
+    
+    @property
+    def prime(self):
+        return self._start_prime
+    
+    @prime.setter
+    def prime(self, start_prime):
+        self._start_prime = _prime_check_with_raise(start_prime)
 
 
 class DNA(_NA_Type):
