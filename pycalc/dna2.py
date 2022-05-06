@@ -94,7 +94,7 @@ class DNA(_NA_Type):
         return f'<DNA {self._start_prime}\'- {self.value} -{3 if self._start_prime == 5 else 5}\'>'
     
     def copy(self):
-        return DNA(self.value)
+        return DNA(self.value, self._start_prime)
 
 
 class RNA(_NA_Type):
@@ -104,9 +104,10 @@ class RNA(_NA_Type):
         return f'<RNA {self._start_prime}\'- {self.value} -{3 if self._start_prime == 5 else 5}\'>'
 
     def copy(self):
-        return RNA(self.value)
+        return RNA(self.value, self._start_prime)
 
 
+#TODO: Make prime support for this
 # *High level utility
 def dna2rna(dna: DNA) -> RNA:
     if type(dna) != DNA:
