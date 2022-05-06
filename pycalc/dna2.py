@@ -73,7 +73,7 @@ class _NA_Type(metaclass=ABCMeta):
 
     @abstractmethod
     def __repr__(self) -> str:
-        return f'<NA {self._start_prime}\'- {self.value} {3 if self._start_prime == 5 else 3}\'>'
+        return f'<NA {self._start_prime}\'- {self.value} {3 if self._start_prime == 5 else 5}\'>'
 
     def __str__(self) -> str:
         return self.__repr__()
