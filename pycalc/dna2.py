@@ -73,7 +73,7 @@ class _NA_Type(metaclass=ABCMeta):
 
     @abstractmethod
     def __repr__(self) -> str:
-        return f'<NA {self.value}>'
+        return f'<NA {self._start_prime}\'- {self.value} {3 if self._start_prime == 5 else 3}\'>'
 
     def __str__(self) -> str:
         return self.__repr__()
@@ -91,7 +91,7 @@ class DNA(_NA_Type):
     ALLOWED_BASE = ['A','G','T','C']
 
     def __repr__(self) -> str:
-        return f'<DNA "{self.value}">'
+        return f'<DNA {self._start_prime}\'- {self.value} -{3 if self._start_prime == 5 else 5}\'>'
     
     def copy(self):
         return DNA(self.value)
@@ -101,7 +101,7 @@ class RNA(_NA_Type):
     ALLOWED_BASE = ['A','G','U','C']
 
     def __repr__(self) -> str:
-        return f'<RNA "{self.value}">'
+        return f'<RNA {self._start_prime}\'- {self.value} -{3 if self._start_prime == 5 else 5}\'>'
 
     def copy(self):
         return RNA(self.value)
