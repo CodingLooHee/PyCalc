@@ -27,6 +27,11 @@ def _sequence_check_with_raise(sequence: str, allowedBase: list[str]) -> str | N
     Valid?    -> Return sequence
     Invalid?  -> Throw error
     '''
+
+    # Ensure the sequence is string
+    if type(sequence) != str:
+        raise TypeError('The sequence must be string')
+
     sequence_upper_case = sequence.upper()
 
     if _is_sequence_valid(sequence_upper_case, allowedBase):
