@@ -58,9 +58,19 @@ def test_na_swap_dna_1():
     assert d.value == 'catcgacctga'.upper()
 
 def test_na_swap_dna_2():
-    d = DNA('agtccagctac')
+    d = DNA('agtccagctac', start_prime=3)
     d = na_swap(d)
     assert d.value == 'catcgacctga'.upper()
+
+def test_na_swap_dna_3():   # Test prime swap
+    d = DNA('agtccagctac', start_prime=3)
+    d = na_swap(d)
+    assert d.prime == 5
+
+def test_na_swap_dna_4():   # Test prime swap
+    d = DNA('agtccagctac', start_prime=5)
+    d = na_swap(d)
+    assert d.prime == 3
 
 def test_na_swap_rna_1():
     r = RNA('aguccagcuac')
@@ -68,22 +78,58 @@ def test_na_swap_rna_1():
     assert r.value == 'caucgaccuga'.upper()
 
 def test_na_swap_rna_2():
-    r = RNA('aguccagcuac')
+    r = RNA('aguccagcuac', start_prime=3)
     r = na_swap(r)
     assert r.value == 'caucgaccuga'.upper()
+
+def test_na_swap_rna_3():   # Test prime swap
+    r = RNA('aguccagcuac', start_prime=3)
+    r = na_swap(r)
+    assert r.prime == 5
+
+def test_na_swap_rna_4():   # Test prime swap
+    r = RNA('aguccagcuac', start_prime=5)
+    r = na_swap(r)
+    assert r.prime == 3
 
 def test_oppose_dna():
     d = DNA('agtcagctcta')
     assert oppose_dna(d).value == 'tcagtcgagat'.upper()
 
+# Make sure prime is not changed
+def test_oppose_dna_prime_5():
+    d = DNA('agtcagctcta', start_prime=5)
+    assert oppose_dna(d).prime == 5
+def test_oppose_dna_prime_3():
+    d = DNA('agtcagctcta', start_prime=3)
+    assert oppose_dna(d).prime == 3
+
 def test_oppose_rna():
     r = RNA('agucagcucua')
     assert oppose_rna(r).value == 'ucagucgagau'.upper()
+
+# Make sure prime is not changed
+def test_oppose_rna_prime_5():
+    r = RNA('agucagcucua', start_prime=5)
+    assert oppose_rna(r).prime == 5
+def test_oppose_rna_prime_3():
+    r = RNA('agucagcucua', start_prime=3)
+    assert oppose_rna(r).prime == 3
 
 def test_transcript():
     template_dna = DNA('agtcagtcagcatcacgact')
     mrna = transcript(template_dna)
     assert mrna.value == 'agucgugaugcugacugacu'.upper()
+
+def test_transcript_prime_1():
+    template_dna = DNA('aGtCCa', start_prime=5)
+    transcripted = transcript(template_dna)
+    assert transcripted.prime == 3
+
+def test_transcript_prime_2():
+    template_dna = DNA('aGtCCa', start_prime=3)
+    transcripted = transcript(template_dna)
+    assert transcripted.prime == 5
 
 def test_dna_copy():
     dna_original = DNA('agtc')

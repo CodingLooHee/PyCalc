@@ -120,19 +120,18 @@ class RNA(_NA_Type):
         return RNA(self.value, self._start_prime)
 
 
-#TODO: Make prime support for this
 # *High level utility
 def dna2rna(dna: DNA) -> RNA:
     if type(dna) != DNA:
         raise TypeError('Must be DNA')
-    new_rna = RNA()
+    new_rna = RNA(start_prime=dna.prime)
     new_rna.value = dna.value.replace('T', 'U')
     return new_rna
 
 def rna2dna(rna: RNA) -> DNA:
     if type(rna) != RNA:
         raise TypeError('Must be RNA')
-    new_dna = DNA()
+    new_dna = DNA(start_prime=rna.prime)
     new_dna.value = rna.value.replace('U', 'T')
     return new_dna
 
@@ -145,10 +144,19 @@ def na_swap(na):
     if type(na) not in [DNA, RNA]:
         raise TypeError('Must be DNA or RNA')
     na.value = na.value[::-1]       # This modify the original value!
+
+    # Swap prime
+    match na.prime:
+        case 5:
+            na.prime = 3
+        case 3:
+            na.prime = 5
+        case _:
+            raise UnknownPrime(f'Unknown prime: {na.prime}\'')
     return na
 
 def oppose_dna(dna: DNA) -> DNA:
-    new_dna = DNA()
+    new_dna = DNA(start_prime=dna.prime)
     for base in dna.value:
         match base:
             case 'A':
@@ -162,7 +170,7 @@ def oppose_dna(dna: DNA) -> DNA:
     return new_dna
 
 def oppose_rna(rna: RNA) -> RNA:
-    new_rna = RNA()
+    new_rna = RNA(start_prime=rna.prime)
     for base in rna.value:
         match base:
             case 'A':
@@ -188,6 +196,6 @@ def transcript(dna: DNA) -> RNA:
 
 # Test zone
 if __name__ == '__main__':
-    d = DNA('agtc')
-    mr = transcript(d)
-    print(mr.value)
+    template_dna = DNA('aGtCCa', start_prime=5)
+    transcripted = transcript(template_dna)
+    assert transcripted.prime == 3
