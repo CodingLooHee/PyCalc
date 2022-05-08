@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Pycalc"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 authors = ["CodingLooHee <63284510+CodingLooHee@users.noreply.github.com>"]
 license = "MIT"
