@@ -7,7 +7,10 @@ import sys
 from art import tprint
 import colorama
 colorama.init(autoreset=True)
-# TODO: Add rich: inspect function
+from rich import pretty as _pretty
+from rich import inspect
+_pretty.install()                # Color output automatically
+
 
 # pycalc package
 from pycalc.dna2 import *
