@@ -7,6 +7,7 @@ import sys
 from art import tprint
 import colorama
 colorama.init(autoreset=True)
+# TODO: Add rich: inspect function
 
 # pycalc package
 from pycalc.dna2 import *
@@ -44,7 +45,7 @@ f = factorial
 ครน = lcm
 
 
-#TODO: Still need more test
+# TODO: Still need more test
 from pycalc.general import *
 
 
