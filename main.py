@@ -29,7 +29,7 @@ overwrite the less one.
 '''
 # Quite insignificant
 from matplotlib.pyplot import *
-from pandas import *
+import sympy as sp      # I'm scare of name collisions
 # Mild important
 from pandas import *
 # Very important
