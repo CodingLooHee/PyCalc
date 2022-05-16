@@ -29,6 +29,7 @@ overwrite the less one.
 '''
 # Quite insignificant
 from matplotlib.pyplot import *
+from scipy import *
 from pandas import *
 # Mild important
 from pandas import *
