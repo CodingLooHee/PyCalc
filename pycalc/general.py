@@ -3,11 +3,13 @@ from math import factorial as f
 from pathlib import Path
 import os
 import colorama
+import sympy as sp
 
 
 # *Additional variables
 # Radian constant
 RAD = pi / 180
+RAD2 = sp.pi / 180  # Using sympy syntax
 # Path
 CWD = Path.cwd()
 # Physic
