@@ -6,10 +6,13 @@ import numpy as np
 import sys
 from art import tprint
 import colorama
+
 colorama.init(autoreset=True)
+
 from rich import pretty as _pretty
 from rich import inspect
-_pretty.install()                # Color output automatically
+
+_pretty.install()  # Color output automatically
 
 
 # pycalc package
@@ -19,20 +22,17 @@ from pycalc.units import *
 
 
 # *Additional import
-'''
+"""
 There are some function that use the same name.
 The problem is that it overwrite the previous function.
 But I want it to use function without writing a module name
 because it reduce my typing speed when I use this calculator.
 So the solution is to make more important function
 overwrite the less one.
-'''
-# Quite insignificant
+"""
 from matplotlib.pyplot import *
-import sympy as sp      # I'm scare of name collisions
-# Mild important
+import sympy as sp  # I'm scare of name collisions
 from pandas import *
-# Very important
 from random import *
 from math import *
 from statistics import *
@@ -58,7 +58,7 @@ variables.update(locals())
 
 
 # *Start interactive console
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Welcome
     print("--------------------------------------------\n")
     tprint("PYCALC")
@@ -67,8 +67,8 @@ if __name__ == '__main__':
     # Quick function access by argument
     if (len_argv := len(sys.argv)) > 1:
         match sys.argv[1]:
-            case 'scalc':
+            case "scalc":
                 scalc()
-    
+
     shell = code.InteractiveConsole(variables)
-    shell.interact(banner='')
+    shell.interact(banner="")

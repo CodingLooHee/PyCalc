@@ -1,4 +1,3 @@
-
 #! Deprecated
 
 from enum import Enum as _Enum

@@ -9,6 +9,7 @@ from abc import ABCMeta, abstractmethod
 class UnknownBase(Exception):
     pass
 
+
 class UnknownPrime(Exception):
     pass
 
@@ -16,21 +17,21 @@ class UnknownPrime(Exception):
 # *Low level utility
 # Check if sequence is valid
 def _is_sequence_valid(sequence: str, allowedBase: list[str]) -> bool:
-        for base in sequence:
-            if not base in allowedBase:
-                return False
-        return True
+    for base in sequence:
+        if not base in allowedBase:
+            return False
+    return True
 
 
 def _sequence_check_with_raise(sequence: str, allowedBase: list[str]) -> str | NoReturn:
-    ''' Check if sequence is valid
+    """Check if sequence is valid
     Valid?    -> Return sequence
     Invalid?  -> Throw error
-    '''
+    """
 
     # Ensure the sequence is string
     if type(sequence) != str:
-        raise TypeError('The sequence must be string')
+        raise TypeError("The sequence must be string")
 
     sequence_upper_case = sequence.upper()
 
@@ -38,14 +39,14 @@ def _sequence_check_with_raise(sequence: str, allowedBase: list[str]) -> str | N
         return sequence_upper_case
     else:
         # Color unknown base in RED
-        error_base = ''
+        error_base = ""
         for base in sequence_upper_case:
             if base not in allowedBase:
-                error_base += f'{_colorama.Fore.RED}{base}{_colorama.Fore.RESET}'
+                error_base += f"{_colorama.Fore.RED}{base}{_colorama.Fore.RESET}"
             else:
                 error_base += base
-        
-        raise UnknownBase(f'Unknown base in sequence: {error_base}')
+
+        raise UnknownBase(f"Unknown base in sequence: {error_base}")
 
 
 def _is_prime_valid(prime: int) -> bool:
@@ -57,64 +58,63 @@ def _is_prime_valid(prime: int) -> bool:
 
 
 def _prime_check_with_raise(prime: int) -> int | NoReturn:
-
     # Ensure the prime is int
     if type(prime) != int:
-        raise TypeError('The prime must be int')
+        raise TypeError("The prime must be int")
 
     if _is_prime_valid(prime):
         return prime
     else:
-        raise UnknownPrime(f'Unknown prime: {prime}\'')
+        raise UnknownPrime(f"Unknown prime: {prime}'")
 
 
 # *DNA and RNA
 class _NA_Type(metaclass=ABCMeta):
     ALLOWED_BASE: list[str] = []
 
-    def __init__(self, sequence: str='', start_prime: int=5) -> None:
+    def __init__(self, sequence: str = "", start_prime: int = 5) -> None:
         self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
         self._start_prime = _prime_check_with_raise(start_prime)
 
     @abstractmethod
     def __repr__(self) -> str:
-        return f'<NA {self._start_prime}\'- {self.value} {3 if self._start_prime == 5 else 5}\'>'
+        return f"<NA {self._start_prime}'- {self.value} {3 if self._start_prime == 5 else 5}'>"
 
     def __str__(self) -> str:
         return self.__repr__()
-    
+
     @property
     def value(self):
         return self._sequence
-    
+
     @value.setter
-    def value(self, sequence: str=''):
+    def value(self, sequence: str = ""):
         self._sequence = _sequence_check_with_raise(sequence, self.ALLOWED_BASE)
-    
+
     @property
     def prime(self):
         return self._start_prime
-    
+
     @prime.setter
     def prime(self, start_prime):
         self._start_prime = _prime_check_with_raise(start_prime)
 
 
 class DNA(_NA_Type):
-    ALLOWED_BASE = ['A','G','T','C']
+    ALLOWED_BASE = ["A", "G", "T", "C"]
 
     def __repr__(self) -> str:
-        return f'<DNA {self._start_prime}\'- {self.value} -{3 if self._start_prime == 5 else 5}\'>'
-    
+        return f"<DNA {self._start_prime}'- {self.value} -{3 if self._start_prime == 5 else 5}'>"
+
     def copy(self):
         return DNA(self.value, self._start_prime)
 
 
 class RNA(_NA_Type):
-    ALLOWED_BASE = ['A','G','U','C']
+    ALLOWED_BASE = ["A", "G", "U", "C"]
 
     def __repr__(self) -> str:
-        return f'<RNA {self._start_prime}\'- {self.value} -{3 if self._start_prime == 5 else 5}\'>'
+        return f"<RNA {self._start_prime}'- {self.value} -{3 if self._start_prime == 5 else 5}'>"
 
     def copy(self):
         return RNA(self.value, self._start_prime)
@@ -123,27 +123,34 @@ class RNA(_NA_Type):
 # *High level utility
 def dna2rna(dna: DNA) -> RNA:
     if type(dna) != DNA:
-        raise TypeError('Must be DNA')
+        raise TypeError("Must be DNA")
     new_rna = RNA(start_prime=dna.prime)
-    new_rna.value = dna.value.replace('T', 'U')
+    new_rna.value = dna.value.replace("T", "U")
     return new_rna
+
 
 def rna2dna(rna: RNA) -> DNA:
     if type(rna) != RNA:
-        raise TypeError('Must be RNA')
+        raise TypeError("Must be RNA")
     new_dna = DNA(start_prime=rna.prime)
-    new_dna.value = rna.value.replace('U', 'T')
+    new_dna.value = rna.value.replace("U", "T")
     return new_dna
 
+
 @overload
-def na_swap(na: DNA) -> DNA | NoReturn:...
+def na_swap(na: DNA) -> DNA | NoReturn:
+    ...
+
+
 @overload
-def na_swap(na: RNA) -> RNA | NoReturn:...
+def na_swap(na: RNA) -> RNA | NoReturn:
+    ...
+
 
 def na_swap(na):
     if type(na) not in [DNA, RNA]:
-        raise TypeError('Must be DNA or RNA')
-    na.value = na.value[::-1]       # This modify the original value!
+        raise TypeError("Must be DNA or RNA")
+    na.value = na.value[::-1]  # This modify the original value!
 
     # Swap prime
     match na.prime:
@@ -152,36 +159,39 @@ def na_swap(na):
         case 3:
             na.prime = 5
         case _:
-            raise UnknownPrime(f'Unknown prime: {na.prime}\'')
+            raise UnknownPrime(f"Unknown prime: {na.prime}'")
     return na
+
 
 def oppose_dna(dna: DNA) -> DNA:
     new_dna = DNA(start_prime=dna.prime)
     for base in dna.value:
         match base:
-            case 'A':
-                new_dna.value += 'T'
-            case 'G':
-                new_dna.value += 'C'
-            case 'T':
-                new_dna.value += 'A'
-            case 'C':
-                new_dna.value += 'G'
+            case "A":
+                new_dna.value += "T"
+            case "G":
+                new_dna.value += "C"
+            case "T":
+                new_dna.value += "A"
+            case "C":
+                new_dna.value += "G"
     return new_dna
+
 
 def oppose_rna(rna: RNA) -> RNA:
     new_rna = RNA(start_prime=rna.prime)
     for base in rna.value:
         match base:
-            case 'A':
-                new_rna.value += 'U'
-            case 'G':
-                new_rna.value += 'C'
-            case 'U':
-                new_rna.value += 'A'
-            case 'C':
-                new_rna.value += 'G'
+            case "A":
+                new_rna.value += "U"
+            case "G":
+                new_rna.value += "C"
+            case "U":
+                new_rna.value += "A"
+            case "C":
+                new_rna.value += "G"
     return new_rna
+
 
 def transcript(dna: DNA) -> RNA:
     # Swap 5' and 3'
@@ -195,7 +205,7 @@ def transcript(dna: DNA) -> RNA:
 
 
 # Test zone
-if __name__ == '__main__':
-    template_dna = DNA('aGtCCa', start_prime=5)
+if __name__ == "__main__":
+    template_dna = DNA("aGtCCa", start_prime=5)
     transcripted = transcript(template_dna)
     assert transcripted.prime == 3
