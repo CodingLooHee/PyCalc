@@ -48,7 +48,6 @@ f = factorial
 ครน = lcm
 
 
-# TODO: Still need more test
 from pycalc.general import *
 
 
