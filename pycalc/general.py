@@ -45,7 +45,7 @@ def seca(x):
     return 1 / cosa(x)  # Sec of angle
 
 
-def sota(x):
+def cota(x):
     return 1 / tana(x)  # Cot of angle
 
 
