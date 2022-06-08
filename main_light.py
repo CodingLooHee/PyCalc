@@ -5,7 +5,7 @@
 from code import InteractiveConsole as _InteractiveConsole
 from colorama import init as _colorama_init
 from rich import pretty as _rich_pretty
-from art import text2art as _art_text2art
+from art import text2art
 
 _colorama_init(autoreset=True)
 _rich_pretty.install()  # Make output colorful
@@ -75,12 +75,17 @@ from pycalc.general import (
     qp,
     G,
     rada,
+    rad2deg,
+    deg2rad,
     sina,
     cosa,
     tana,
     csca,
     seca,
     cota,
+    asina,
+    acosa,
+    atana,
     c,
     acc,
     lm,
@@ -107,11 +112,13 @@ random
 math
 statistics
 """
+from random import random, randint, randrange
+from math import sin, cos, tan, pi, floor, ceil, asin, acos, atan
 
 if __name__ == "__main__":
     shell = _InteractiveConsole(globals().copy() | locals().copy())
     shell.interact(
         banner="--------------------------------------------\n"
-        + _art_text2art("PYCALC")
+        + text2art("PYCALC")
         + "--------------------------------------------"
     )
