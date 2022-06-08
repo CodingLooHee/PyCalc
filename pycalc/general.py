@@ -1,4 +1,4 @@
-from math import pi, sin, cos, tan, log10, log, e
+from math import pi, sin, cos, tan, log10, log, e, asin, acos, atan
 from math import factorial as f
 from pathlib import Path
 import os
@@ -22,7 +22,7 @@ G = 6.67e-11  # Gravity constant (m^3/(kg.s^2))
 # *Additional function
 # Trigonometry
 def rada(x):
-    return x * RAD  # Radian to Angle
+    return x * RAD  # Radian to Angle #! Will be deprecated
 
 
 def deg2rad(x):
@@ -55,6 +55,21 @@ def seca(x):
 
 def cota(x):
     return 1 / tana(x)  # Cot of angle
+
+
+def asina(x):  # Arcsin (return angle)
+    return rad2deg(asin(x))
+
+
+def acosa(x):  # Arccos (return angle)
+    return rad2deg(acos(x))
+
+
+def atana(x):  # Arctan (return angle)
+    return rad2deg(atan(x))
+
+
+# TODO: Add Arccosec Arcsec Arccot
 
 
 # Probability and etc.
