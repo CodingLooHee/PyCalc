@@ -22,7 +22,15 @@ G = 6.67e-11  # Gravity constant (m^3/(kg.s^2))
 # *Additional function
 # Trigonometry
 def rada(x):
-    return x * pi / 180  # Radian to Angle
+    return x * RAD  # Radian to Angle
+
+
+def deg2rad(x):
+    return rada(x)
+
+
+def rad2deg(x):
+    return x / RAD
 
 
 def sina(x):
